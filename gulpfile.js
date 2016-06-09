@@ -14,8 +14,8 @@ const fileExists = fileName => {
   return promiseFStat(fileName);
 };
 
-gulp.task('lint', ['enforce-quality'], () => {
-  return gulp.src(['index.js', 'server/**/*.js', '!node_modules/**'])
+gulp.task('lint', ['enforce-quality'], () =>
+  gulp.src(['index.js', 'server/**/*.js', '!node_modules/**'])
     .pipe(cache('eslint'))
     .pipe(eslint())
     .pipe(eslint.format())
@@ -24,24 +24,24 @@ gulp.task('lint', ['enforce-quality'], () => {
         delete cache.caches.eslint[path.resolve(result.filePath)];
       }
     }))
-    .pipe(gulpif(!args.cont, eslint.failAfterError()));
-});
+    .pipe(gulpif(!args.cont, eslint.failAfterError()))
+);
 
-gulp.task('lint-watch', ['lint'], () => {
-  return gulp.watch(['server/**/*.js', 'index.js'], ['lint'], (event) => {
+gulp.task('lint-watch', ['lint'], () =>
+  gulp.watch(['server/**/*.js', 'index.js'], ['lint'], event => {
     if (event.type === 'deleted' && cache.caches.eslint) {
       delete cache.caches.eslint[event.path];
     }
-  });
-});
+  })
+);
 
-gulp.task('enforce-quality', () => {
-  fileExists('.git/hooks/pre-push').then((fsStatData) => {
-    console.log('Pre-Push Hook Already Exists');
-  }).catch((fsError) => {
-    return gulp.src('misc/pre-push-hook.sh')
+gulp.task('enforce-quality', () =>
+  fileExists('.git/hooks/pre-push').then(fsStatData =>
+    console.log('Pre-Push Hook Already Exists')
+  ).catch(fsError =>
+    gulp.src('misc/pre-push-hook.sh')
       .pipe(rename('/hooks/pre-push'))
       .pipe(chmod(755))
-      .pipe(gulp.dest('.git'));
-  });
-});
+      .pipe(gulp.dest('.git'))
+  )
+);
