@@ -28,8 +28,14 @@
     "yargs": "^4.7.1"
   },
   "dependencies": {
+    "bluebird": "^3.4.1",
+    "co-bcrypt": "^1.0.0",
+    "isemail": "^2.2.0",
+    "jsonwebtoken": "^7.0.1",
     "koa": "^1.2.0",
+    "koa-json-body": "^4.0.0",
     "koa-router": "^5.4.0",
+    "moment": "^2.13.0",
     "pg-promise": "^4.5.1"
   }
 }

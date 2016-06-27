@@ -1,11 +1,16 @@
 const koa = require('koa');
 const config = require('./config');
-const routes = require('./server/routes');
-const database = require('./server/database');
+const server = require('./server');
+const API_PREFIX = '/api';
 
 const app = koa();
-const dbSingleton = database(config.database);
-const appRoutes = routes(dbSingleton);
+const appRouter = server.router(API_PREFIX);
+const auth = server.authentication(config.secret);
 
-app.use(appRoutes);
+app.context.database = server.database(config.database);
+
+app.use(auth.router.routes());
+app.use(auth.middleware);
+app.use(appRouter.routes());
+
 app.listen(config.port);
