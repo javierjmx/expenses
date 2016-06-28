@@ -2,6 +2,14 @@
 
 The REST API provide programmatic access to read and write expenses.
 
+## Development
+
+Requires node.js => 4.0 and a PostgreSQL installation.
+
+Clone this repo, copy `default-config.json` to `config.json` and run `npm start`.
+
+Includes a live linter: `npm run linter:live`.
+
 ## Authentication on all endpoints
 
 It is required to clients to authenticate all of their requests with [JSON Web Token](https://jwt.io/).
