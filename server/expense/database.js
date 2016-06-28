@@ -14,14 +14,14 @@ module.exports = connection => {
     list (start, end, userId) {
       const qry = 'select * from expenses where ' +
         '$1 <= date and date <= $2 and ' +
-        'categoryId in (select id from categories where userId = $3)';
+        'categoryId in (select id from categories where userid = $3)';
       return db.any(qry, [start, end, userId]);
     },
 
     one (id, userId) {
       const qry = 'select * from expenses where ' +
         'id = $1 and ' +
-        'categoryId in (select id from categories where userId = $2)';
+        'categoryId in (select id from categories where userid = $2)';
       return db.oneOrNone(qry, [id, userId]);
     },
 

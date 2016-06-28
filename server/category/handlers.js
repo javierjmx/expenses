@@ -14,7 +14,8 @@ module.exports = {
     const category = yield this.database.categories.one(categoryId);
     const user = this.state.user;
 
-    if (!category || user.id !== category.userId) {
+    console.log(category, user);
+    if (!category || user.id !== category.userid) {
       this.throw(errors.categoryNotFound);
     }
 
@@ -38,7 +39,7 @@ module.exports = {
     const name = this.query.name;
     const user = this.state.user;
 
-    if (!category || user.id !== category.userId) {
+    if (!category || user.id !== category.userid) {
       this.throw(errors.categoryNotFound);
     }
 
@@ -54,7 +55,7 @@ module.exports = {
     const category = yield this.database.categories.one(categoryId);
     const user = this.state.user;
 
-    if (!category || user.id !== category.userId) {
+    if (!category || user.id !== category.userid) {
       this.throw(errors.categoryNotFound);
     }
 

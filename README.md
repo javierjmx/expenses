@@ -24,7 +24,7 @@ An email address. If it's already in the database, it will return a 400.
 
 A password.
 
-#### confirmation `required`
+##### confirmation `required`
 
 A confirmation password. It must be the same as password. If it's not, a 400 will be returned.
 

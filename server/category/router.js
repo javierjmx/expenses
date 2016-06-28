@@ -1,14 +1,15 @@
 const router = require('koa-router');
 const handlers = require('./handlers');
+const validators = require('./validators');
 
 module.exports = prefix => {
   const route = router({ prefix });
 
   route.get('/', handlers.list);
-  route.post('/', handlers.create);
-  route.get('/:id', handlers.one);
-  route.put('/:id', handlers.update);
-  route.del('/:id', handlers.destroy);
+  route.post('/', validators.query, handlers.create);
+  route.get('/:id', validators.params, handlers.one);
+  route.put('/:id', validators.query, handlers.update);
+  route.del('/:id', validators.params, handlers.destroy);
 
   return route;
 };
