@@ -1,4 +1,5 @@
 {
   "port": 80,
-  "database": "postgres://user:password@localhost:5432/db"
+  "database": "postgres://user:password@localhost:5432/db",
+  "secret": "thisissupersecret"
 }

@@ -1,13 +1,12 @@
 const router = require('koa-router');
-const handlers = require('./handlers');
+const expenses = require('./expense');
+const categories = require('./category');
 
 module.exports = prefix => {
   const route = router({ prefix });
 
-  route.post('/expense/create', handlers.insertExpense);
-  route.get('/expenses', handlers.getExpenses);
-  route.get('/categories/search', handlers.searchCategories);
-  route.post('/categories/create', handlers.createCategory);
+  route.use(expenses.router('/expenses').routes());
+  route.use(categories.router('/categories').routes());
 
   return route;
 };
